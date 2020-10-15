@@ -1,0 +1,32 @@
+import otrosRodados.*
+import trafik.*
+import dependencia.*
+import pedidos.*
+
+test "Pedidos - Primer Test" {
+
+	var pedido1 = new Pedido(distanciaARecorrer = 960, tiempoMaximo =8, cantPasajeros = 4)
+	pedido1.addColoresIncompatibles("azul")
+	pedido1.addColoresIncompatibles("negro")
+	var cachito = new Corsa (color = "rojo")
+	assert.equals(true, pedido1.puedeSatisfacerPedido(cachito))
+}
+
+test "Pedidos - Segundo Test" {
+
+	var pedido1 = new Pedido(distanciaARecorrer = 960, tiempoMaximo =8, cantPasajeros = 6)
+	pedido1.addColoresIncompatibles("azul")
+	pedido1.addColoresIncompatibles("negro")
+	var cachito = new Corsa (color = "rojo")
+	assert.equals(false, pedido1.puedeSatisfacerPedido(cachito))
+}
+
+test "Pedidos - Tercer Test" {
+
+	var pedido1 = new Pedido(distanciaARecorrer = 960, tiempoMaximo =8, cantPasajeros = 4)
+	pedido1.addColoresIncompatibles("azul")
+	pedido1.addColoresIncompatibles("negro")
+	pedido1.addColoresIncompatibles("rojo")
+	var cachito = new Corsa (color = "rojo")
+	assert.equals(false, pedido1.puedeSatisfacerPedido(cachito))
+}

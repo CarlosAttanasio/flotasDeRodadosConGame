@@ -1,0 +1,53 @@
+import otrosRodados.*
+import trafik.*
+import dependencia.*
+
+test " Test Dependencia Deportes" {
+
+	var deportes = new Dependencia (cantEmpleados=45)
+	var cachito = new Corsa (color = "rojo")
+	var corsa1 = new Corsa (color = "verde")
+	var corsa2 = new Corsa (color = "azul")
+	var autoEsp = new AutoEspecial(color = "beige", peso = 1200, capacidad = 5, velMaxima = 160)
+	var kwid = new Kwid()
+	kwid.tanqueAdicional(true)
+	deportes.agregarAFlota(cachito)
+	deportes.agregarAFlota(corsa1)
+	deportes.agregarAFlota(corsa2)
+	deportes.agregarAFlota(kwid)
+	deportes.agregarAFlota(autoEsp)
+	assert.equals(6450, deportes.pesoTotalFlota())
+	assert.equals(true, deportes.estaBienEquipada())
+	assert.equals("beige", deportes.colorDelRodadoMasRapido())
+	assert.equals(true, deportes.esGrande())
+	assert.equals(25, deportes.capacidadFaltante())
+	assert.equals(7, deportes.capacidadTotalEnColor("azul"))
+}
+
+test "Test Dependencia Cultura"{
+	
+	
+	var cultura = new Dependencia (cantEmpleados=31)
+	var cachito = new Corsa (color = "rojo")
+	var kwid1 = new Kwid()
+	var kwid2 = new Kwid()
+	kwid1.tanqueAdicional(true)
+	kwid2.tanqueAdicional(true)
+	var kwid3 = new Kwid()
+	kwid3.tanqueAdicional(false)
+	trafic.interior("comodo")
+	trafic.motor("bataton")
+	cultura.agregarAFlota(cachito)
+	cultura.agregarAFlota(kwid1)
+	cultura.agregarAFlota(kwid2)
+	cultura.agregarAFlota(kwid3)
+	cultura.agregarAFlota(trafic)
+	assert.equals(5900, cultura.pesoTotalFlota())
+	assert.equals(false, cultura.estaBienEquipada())
+	assert.equals("rojo", cultura.colorDelRodadoMasRapido())
+	assert.equals(false, cultura.esGrande())
+	assert.equals(12, cultura.capacidadFaltante())
+	assert.equals(10, cultura.capacidadTotalEnColor("azul"))
+	
+		
+}
